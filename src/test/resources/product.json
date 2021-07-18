@@ -1,0 +1,11 @@
+{
+  "categoryId": 1,
+  "discontinued": true,
+  "productName": "My Awesome Product!!!",
+  "quantityPerUnit": "1",
+  "reorderLevel": 1,
+  "supplierId": 1,
+  "unitPrice": 200,
+  "unitsInStock": 11,
+  "unitsOnOrder": 1
+}
