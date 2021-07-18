@@ -40,7 +40,7 @@ public class Tests extends TestConfig {
 
     @Test
     public void getEmployeeOauth() {
-        String employeeId = "12516";
+        int employeeId = 12516;
 
         given()
             .auth()
@@ -107,7 +107,7 @@ public class Tests extends TestConfig {
 
     @Test
     public void jsonPathValidation() {
-        String employeeId = "3";
+        int employeeId = 3;
 
         given()
             .accept(ContentType.JSON)

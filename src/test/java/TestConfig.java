@@ -22,6 +22,7 @@ public class TestConfig {
     protected static String employees;
     protected static String ordersById;
     protected static String users;
+    protected static String usersById;
     protected static String products;
     protected static String token;
 
@@ -39,6 +40,7 @@ public class TestConfig {
         employeesById = "/api/Employees/{id}";
         ordersById = "/api/{version}/Orders/{id}";
         users = "/api/Users";
+        usersById = "/api/Users/{id}";
         products = "/api/Products";
         token = "/api/Token";
         apiToken = getApiToken();
