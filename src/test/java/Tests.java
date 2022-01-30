@@ -1,5 +1,6 @@
 import static io.restassured.RestAssured.given;
 import static io.restassured.RestAssured.when;
+import static io.restassured.module.jsv.JsonSchemaValidator.matchesJsonSchema;
 import static org.hamcrest.Matchers.equalTo;
 import static org.hamcrest.Matchers.hasSize;
 
@@ -170,11 +171,43 @@ public class Tests extends TestConfig {
 
     @Test
     public void createAndDeleteUser() {
+        User user = new User(faker.superhero().name(), "123");
+        
+        Response response = (Response) given()
+                .spec(requestSpec)
+                .and()
+                .body(user)
+                .when()
+                .post(users)
+                .then()
+                .spec(responseOkSpec)
+                .extract();
 
+        int id = response.path("id");
+
+        given()
+                .spec(requestSpec)
+                .pathParam("id", id)
+                .when()
+                .delete(usersById)
+                .then()
+                .statusCode(200);
     }
 
     @Test
     public void jsonSchemaTest() {
         File jsonSchema = new File(System.getProperty("user.dir") + "/src/test/resources/get-users-json-schema.json");
+
+        given().accept(ContentType.JSON)
+                .and()
+                .auth()
+                .oauth2(getApiToken())
+                .param("page", 0)
+                .param("pageSize", 10)
+                .when()
+                .get(users)
+                .then()
+                .assertThat()
+                .body(matchesJsonSchema(jsonSchema));
     }
 }
