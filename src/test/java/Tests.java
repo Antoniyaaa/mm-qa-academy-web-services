@@ -171,6 +171,7 @@ public class Tests extends TestConfig {
 
     @Test
     public void createAndDeleteUser() {
+        
         User user = new User(faker.superhero().name(), "123");
 
         Response response = (Response) given()
@@ -196,6 +197,7 @@ public class Tests extends TestConfig {
 
     @Test
     public void jsonSchemaTest() {
+
         File jsonSchema = new File(System.getProperty("user.dir") + "/src/test/resources/get-users-json-schema.json");
 
         given().accept(ContentType.JSON)
